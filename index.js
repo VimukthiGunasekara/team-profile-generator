@@ -1,6 +1,13 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
+const manager = require('./lib/manager');
+const engineer = require('./lib/engineer');
+const intern = require('./lib/intern');
+const renderTeam = require('./src/template');
+
+teamArray = [];
+
 function run() {
   inquirer
     .prompt([
@@ -31,9 +38,9 @@ function managerQuestion() {
     {
       type: 'input',
       message: 'What is the name of the teams manager?',
-      name: 'managerName',
-      validate: (managerName) => {
-        if (managerName) {
+      name: 'mName',
+      validate: (mName) => {
+        if (mName) {
           return true;
         }
         else {
@@ -45,9 +52,9 @@ function managerQuestion() {
     {
       type: 'input',
       message: "Please enter the manager's ID!",
-      name: 'managerID',
-      validate: (id) => {
-        if (id) {
+      name: 'mID',
+      validate: (mID) => {
+        if (mID) {
           return true;
         }
         else {
@@ -59,9 +66,9 @@ function managerQuestion() {
     {
       type: 'input',
       message: "Please enter the manager's email!",
-      name: 'managerEmail',
-      validate: (email) => {
-        if (email) {
+      name: 'mEmail',
+      validate: (mEmail) => {
+        if (mEmail) {
           return true;
         }
         else {
@@ -73,9 +80,9 @@ function managerQuestion() {
     {
       type: 'input',
       message: "Please enter the manager's office number!",
-      name: 'officeNumber',
-      validate: (officeNumber) => {
-        if (officeNumber) {
+      name: 'mOfficeNumber',
+      validate: (mOfficeNumber) => {
+        if (mOfficeNumber) {
           return true;
         }
         else {
@@ -85,6 +92,8 @@ function managerQuestion() {
       }
     },
   ]).then((answers) => {
+    const Manager = new manager(answers.mName, answers.mID, answers.mEmail, answers.mOfficeNumber);
+    teamArray.push(Manager);
     run();
   });
 }
@@ -148,6 +157,8 @@ function engineerQuestion() {
       }
     },
   ]).then((answers) => {
+    const Engineer = new engineer(answers.eName, answers.eID, answers.eEmail, answers.github);
+    teamArray.push(Engineer);
     run();
   });
 }
@@ -211,15 +222,21 @@ function internQuestion() {
       }
     },
   ]).then((answers) => {
+    const Intern = new intern(answers.iName, answers.iID, answers.iEmail, answers.school);
+    teamArray.push(Intern);
     run();
   });
 }
 
 function createTeam() {
   console.log("Team created!")
+  fs.writeFile('./dist/index.html', renderTeam(teamArray), function (err) {
+    if (err) {
+      return console.log(err)
+    }
+  });
 }
 
 run();
-
 
 

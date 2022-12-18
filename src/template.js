@@ -1,60 +1,83 @@
 const renderTeam = team => {
-    const renderManager = team => {
-        return `
-            <div class="card employee-card p-3 m-2">
-                <div class="card-header bg-dark   text-white">
-                    <h2 class="card-title">${manager.getName()}</h2>
-                    <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>${manager.getRole()}</h3>
-                </div>
-                <div class="card-body">
-                    <ul class="list-group">
-                        <li class="list-group-item">ID: ${manager.getId()}</li>
-                        <li class="list-group-item">Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
-                        <li class="list-group-item">Office number: ${manager.getOfficeNumber()}</li>
-                    </ul>
-                </div>
-            </div>`;
-    }
+  const renderManager = manager => {
+    return `<div class="col-4">
+    <div class="card employee-card p-3 m-2">
+      <div class="card-header mColor text-white">
+        <h2 class="card-title">${manager.getName()}</h2>
+        <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>${manager.getRole()}</h3>
+      </div>
+      <div class="card-body">
+        <ul class="list-group">
+          <li class="list-group-item">ID: ${manager.getId()}</li>
+          <li class="list-group-item">Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
+          <li class="list-group-item">Office number: ${manager.getOfficeNumber()}</li>
+        </ul>
+      </div>
+    </div>
+  </div>`;
+  }
 
-    const renderEngineer = engineer => {
-        return `<div class="card employee-card p-3 m-2">
-            <div class="card-header bg-secondary text-white">
-                <h2 class="card-title">${engineer.getName()}</h2>
-                <h3 class="card-title"><i class="fas fa-glasses mr-2"></i>${engineer.getRole()}</h3>
-            </div>
-            <div class="card-body">
-                <ul class="list-group">
-                    <li class="list-group-item">ID: ${engineer.getId()}</li>
-                    <li class="list-group-item">Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></li>
-                    <li class="list-group-item">GitHub: <a href="https://github.com/${engineer.getGithub()}" target="_blank"
-                        rel="noopener noreferrer">${engineer.getGithub()}</a></li>
-                </ul>
-            </div>
-        </div>`;
-    }
+  const renderEngineer = engineer => {
+    return `<div class="col-4">
+    <div class="card employee-card p-3 m-2">
+      <div class="card-header eColor text-white">
+        <h2 class="card-title">${engineer.getName()}</h2>
+        <h3 class="card-title"><i class="fas fa-glasses mr-2"></i>${engineer.getRole()}</h3>
+      </div>
+      <div class="card-body">
+        <ul class="list-group">
+          <li class="list-group-item">ID: ${engineer.getId()}</li>
+          <li class="list-group-item">Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a>
+          </li>
+          <li class="list-group-item">GitHub: <a href="https://github.com/${engineer.getGithub()}" target="_blank"
+              rel="noopener noreferrer">${engineer.getGithub()}</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>`;
+  }
 
-    const renderIntern = intern => {
-        return `<div class="card employee-card p-3 m-2">
-            <div class="card-header bg-secondary text-white">
-                <h2 class="card-title">${intern.getName()}</h2>
-                <h3 class="card-title"><i class="fas fa-user-graduate mr-2"></i>${intern.getRole()}</h3>
-            </div>
-            <div class="card-body">
-                <ul class="list-group">
-                    <li class="list-group-item">ID: ${intern.getId()}</li>
-                    <li class="list-group-item">Email: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></li>
-                    <li class="list-group-item">School: ${intern.getSchool()}</li>
-                </ul>
-            </div>
-        </div>`;
-    }
+  const renderIntern = intern => {
+    return `<div class="col-4">
+    <div class="card employee-card p-3 m-2">
+      <div class="card-header iColor text-white">
+        <h2 class="card-title">${intern.getName()}</h2>
+        <h3 class="card-title"><i class="fas fa-user-graduate mr-2"></i>${intern.getRole()}</h3>
+      </div>
+      <div class="card-body">
+        <ul class="list-group">
+          <li class="list-group-item">ID: ${intern.getId()}</li>
+          <li class="list-group-item">Email: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></li>
+          <li class="list-group-item">School: ${intern.getSchool()}</li>
+        </ul>
+      </div>
+    </div>
+  </div>`;
+  }
 
-    
+  const html = [];
+
+  html.push(team
+    .filter(employee => employee.getRole() === "Manager")
+    .map(manager => renderManager(manager))
+  );
+  html.push(team
+    .filter(employee => employee.getRole() === "Engineer")
+    .map(engineer => renderEngineer(engineer))
+    .join("")
+  );
+  html.push(team
+    .filter(employee => employee.getRole() === "Intern")
+    .map(intern => renderIntern(intern))
+    .join("")
+  );
+
+  return html.join("");
 
 }
 
-function renderHTML() {
-    return `<!DOCTYPE html>
+module.exports = team => {
+  return `<!DOCTYPE html>
     <html lang="en">
     
     <head>
@@ -67,13 +90,25 @@ function renderHTML() {
     </head>
     <style>
       .bg-color {
-        background-color: rgb(199, 167, 230);
+        background-color: #2D4059;
+      }
+    
+      .mColor {
+        background-color: #EA5455;
+      }
+    
+      .eColor {
+        background-color: #F07B3F;
+      }
+    
+      .iColor {
+        background-color: #838d99;
       }
     </style>
     
     <body>
     
-      <div class="jumbotron bg-color p-3">
+      <div class="jumbotron bg-color p-4">
         <div class="container text-center">
           <h1>Team Profile Generator</h1>
           <p>information about employees on a software engineering team.</p>
@@ -87,10 +122,13 @@ function renderHTML() {
           </div>
         </div>
       </div>
+
+      <div class="bg-color mt-2 p-3 text-center">
+        <p>Developed by</p>
+        <h5>Vimukthi Gunasekara</h5>
+      </div>
     
     </body>
     
     </html>`;
 }
-
-module.exports = { renderHTML };
