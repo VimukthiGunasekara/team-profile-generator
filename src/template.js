@@ -94,11 +94,11 @@ module.exports = team => {
       }
     
       .mColor {
-        background-color: #EA5455;
+        background-color: #cc7a7a;
       }
     
       .eColor {
-        background-color: #F07B3F;
+        background-color: #d1906f;
       }
     
       .iColor {
@@ -109,7 +109,7 @@ module.exports = team => {
     <body>
     
       <div class="jumbotron bg-color p-4">
-        <div class="container text-center">
+        <div class="container text-center text-white">
           <h1>Team Profile Generator</h1>
           <p>information about employees on a software engineering team.</p>
         </div>
@@ -117,13 +117,13 @@ module.exports = team => {
     
       <div class="container">
         <div class="row p-3">
-          <div class="row team-area col-12 d-flex justify-content-center">
+          <div class="team-area col-12 d-flex flex-wrap justify-content-center">
             ${renderTeam(team)}
           </div>
         </div>
       </div>
 
-      <div class="bg-color mt-2 p-3 text-center">
+      <div class="bg-color mt-2 p-3 text-center  text-white">
         <p>Developed by</p>
         <h5>Vimukthi Gunasekara</h5>
       </div>

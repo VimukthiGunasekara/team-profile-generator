@@ -230,7 +230,7 @@ function internQuestion() {
 
 function createTeam() {
   console.log("Team created!")
-  fs.writeFile('./dist/index.html', renderTeam(teamArray), function (err) {
+  fs.writeFile('./dist_output/index.html', renderTeam(teamArray), function (err) {
     if (err) {
       return console.log(err)
     }
