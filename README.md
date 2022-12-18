@@ -26,7 +26,7 @@ This app generates a team profile using the Inquirer module from Node.js and dis
 * [FAQs](#faqs)
   
 
-## [User Story](#table-of-contents)
+## 👤 [User Story](#table-of-contents)
 
 ``` 
 AS A manager
@@ -35,7 +35,7 @@ SO THAT I have quick access to their emails and GitHub profiles
 ```
 
 
-## [Acceptance Criteria](#table-of-contents)
+## 🔑 [Acceptance Criteria](#table-of-contents)
 
 ```
 GIVEN a command-line application that accepts user input
@@ -57,7 +57,7 @@ WHEN I decide to finish building my team
 THEN I exit the application, and the HTML is generated
 ```
 
-## [Mock-Up](#table-of-contents)
+## 📺 [Mock-Up](#table-of-contents)
 
 ![Screenshot](./src/readme_src/desktop-screenshot.png)
 
