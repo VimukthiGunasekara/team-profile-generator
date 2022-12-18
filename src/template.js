@@ -1,6 +1,6 @@
 const renderTeam = team => {
   const renderManager = manager => {
-    return `<div class="col-4">
+    return `<div class="mainCard">
     <div class="card employee-card p-3 m-2">
       <div class="card-header mColor text-white">
         <h2 class="card-title">${manager.getName()}</h2>
@@ -18,7 +18,7 @@ const renderTeam = team => {
   }
 
   const renderEngineer = engineer => {
-    return `<div class="col-4">
+    return `<div class="mainCard">
     <div class="card employee-card p-3 m-2">
       <div class="card-header eColor text-white">
         <h2 class="card-title">${engineer.getName()}</h2>
@@ -38,7 +38,7 @@ const renderTeam = team => {
   }
 
   const renderIntern = intern => {
-    return `<div class="col-4">
+    return `<div class="mainCard">
     <div class="card employee-card p-3 m-2">
       <div class="card-header iColor text-white">
         <h2 class="card-title">${intern.getName()}</h2>
@@ -89,21 +89,31 @@ module.exports = team => {
       <title>Team Profile Generator</title>
     </head>
     <style>
-      .bg-color {
-        background-color: #2D4059;
-      }
-    
-      .mColor {
-        background-color: #cc7a7a;
-      }
-    
-      .eColor {
-        background-color: #d1906f;
-      }
-    
-      .iColor {
-        background-color: #838d99;
-      }
+    .bg-color {
+      background-color: #2D4059;
+    }
+  
+    .mColor {
+      background-color: #cc7a7a;
+    }
+  
+    .eColor {
+      background-color: #d1906f;
+    }
+  
+    .iColor {
+      background-color: #838d99;
+    }
+  
+    .mainCard{
+      width: 33.33%;
+    }
+  
+    @media screen and (max-width: 626px) {
+      .mainCard{
+      width: 100%;
+    }
+    }
     </style>
     
     <body>

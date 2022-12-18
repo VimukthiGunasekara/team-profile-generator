@@ -229,7 +229,7 @@ function internQuestion() {
 }
 
 function createTeam() {
-  console.log("Team created!")
+  console.log("Team Proflies created success!")
   fs.writeFile('./dist_output/index.html', renderTeam(teamArray), function (err) {
     if (err) {
       return console.log(err)
